@@ -18,12 +18,9 @@ let six = $('div span:nth-child(10)')
 let one = $('div span:nth-child(12)')
 let two = $('div span:nth-child(13)')
 let three = $('div span:nth-child(14)')
+// let error = $('#screen').text('Error')
 
-// add pending class to operator buttons (plus, minus, multiply, divide)
-// $('div span:nth-child(2)').addClass('pending')
-// $('div span:nth-child(3)').addClass('pending')
-// $('div span:nth-child(7)').addClass('pending')
-// $('div span:nth-child(11)').addClass('pending')
+
 
 
 // add number class to spans that contain the numbers
@@ -67,8 +64,26 @@ $(function(){
 
 
   $(equals).click(function(){
-    $(equals).clone().appendTo("#screen")
-    // equals
+    let clicked = $('#screen').find('span')
+    let numbers = $('#screen').find('.number')
+    let operator = $('#screen').find('.operator').text();
+    let index = $('div span.operator').index()
+    let firstNum = parseInt($('#screen span.operator').prevAll().text().split('').reverse().join(''))
+    let secondNum = parseInt($('#screen span.operator').nextAll().text().split('').join(''))
+    var result = 0;
+    if(operator === divide.text()){
+      result = firstNum / secondNum
+    } else if(operator === multiply.text()){
+      result = firstNum * secondNum
+    } else if(operator === plus.text()){
+      result = firstNum + secondNum
+    } else if(operator === minus.text()){
+      result = firstNum - secondNum
+    } if(isNaN(result) || result === Infinity){
+      $('#screen').text("ERROR!!!!!")
+    } else{
+    $('#screen').text(result)
+}
   })
 
   $(seven).click(function(){
@@ -111,103 +126,10 @@ $(function(){
   $(zero).click(function(){
     $(zero).clone().appendTo("#screen")
   })
+  // $(error).text.appendTo('#screen')
 
 })
 
-
-
-let clicked = $('#screen').find('span')
-let numbers = $('#screen').find('.number')
-let operator = $('#screen').find('.operator')
-let index = $('div span.operator').index()
-
-var firstNum = []
-  for(var i = 0; i < index; i++){
-    firstNum.push(i)
-    firstNum.join('')
-    console.log(firstNum);
-  }
-
-for(var i = 0; i < 4; i++){
-  console.log(i);
-}
-
-
-let secondNum = $('div span.operator').nextAll()
-//
-console.log(index)
-// Ideas: make 'clicked' into an array, listen for first operand
-// and 'equals' in order to store 'math problem'
-// add to click listener for equals:
-// get clicked numbers from the screen div
-// get the operand from the screen div
-// find index of operand; get numbers before and after it
-// make these into an expression, depending on the type of operand
-// if more than one operand is clicked, return 'error' message
-// if 'error message is displayed, disable click listners'
-
-
-
-
-// function to start calculator at zero and to reset when we clear the previous function
-// first add class 'pending' to the operators
-
-// function resetCalculator(currentValue){
-//
-//   $('#screen').val(currentValue)
-//   $('div span:nth-child(2)').removeClass('pending')
-//   $('div span:nth-child(3)').removeClass('pending')
-//   $('div span:nth-child(7)').removeClass('pending')
-//   $('div span:nth-child(11)').removeClass('pending')
-//   $('#screen').data('isPending', false)
-//   $('#screen').data('thePendingFunction', '')
-//   $('#screen').data('firstValueSet', false)
-//   $('#screen').data('secondValueSet', false)
-//   $('#screen').data('firstValue', currentValue)
-//   $('#screen').data('secondValue', 0)
-//   $('#screen').data('fromPrevious', false)
-//
-// }
-//
-// //  Add new number to screen; if the number is zero, replace with clicked
-// // set the clicked number and display on screen
-// // add new number to whatever is on the screen
-// // reset the calculator to that number
-//
-// $('number').click(function(){
-//   if($('#screen').data('fromPrevious') == true){
-//     resetCalculator($(this).text())
-//   }  else if(($('#screen').data('isPending') == true) && ($('#screen').data('firstValueSet') == false)) {
-//       $('#screen').data('firstValue', $('#screen').val())
-//       $('#screen').data('firstValueSet', true)
-//
-//       // clicking on a new number after first is set
-//   }  else if(($('#screen').data('isPending') == true) && ($('#screen').data('firstValueSet') == true)) {
-//
-//       var currentValue = $('#screen').val()
-//       var toAdd = $(this).text();
-//
-//       var newValue = currentValue, toAdd
-//       $('#screen').val(newValue)
-//
-//       $('#screen').data('secondValue', $('#screen').val())
-//       $('#screen').data('secondValueSet', true)
-//
-//       // clicking on a number for first time
-//   }   else {
-//       var currentValue = $('#screen').val()
-//       if(currentValue == 0) {
-//         currentValue = ""
-//       }
-//
-//       var toAdd = $(this).text()
-//       var newValue = currentValue, toAdd
-//       $('#screen').val(newValue)
-//   }
-//
-// })
-//
-//
-
+// add 'Error' message
 
 })
