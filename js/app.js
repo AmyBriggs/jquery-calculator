@@ -37,9 +37,11 @@ $('div span:nth-child(4)').addClass('number')
 $('div span:nth-child(5)').addClass('number')
 $('div span:nth-child(6)').addClass('number')
 
+
+// add click listeners to each button to display them on screen
+// code the 'clear' button to return the screen to blank
+
 $(function(){
-
-
 
   $(clear).click(function(){
     location.reload()
@@ -111,6 +113,40 @@ $(function(){
   })
 
 })
+
+
+
+let clicked = $('#screen').find('span')
+let numbers = $('#screen').find('.number')
+let operator = $('#screen').find('.operator')
+let index = $('div span.operator').index()
+
+var firstNum = []
+  for(var i = 0; i < index; i++){
+    firstNum.push(i)
+    firstNum.join('')
+    console.log(firstNum);
+  }
+
+for(var i = 0; i < 4; i++){
+  console.log(i);
+}
+
+
+let secondNum = $('div span.operator').nextAll()
+//
+console.log(index)
+// Ideas: make 'clicked' into an array, listen for first operand
+// and 'equals' in order to store 'math problem'
+// add to click listener for equals:
+// get clicked numbers from the screen div
+// get the operand from the screen div
+// find index of operand; get numbers before and after it
+// make these into an expression, depending on the type of operand
+// if more than one operand is clicked, return 'error' message
+// if 'error message is displayed, disable click listners'
+
+
 
 
 // function to start calculator at zero and to reset when we clear the previous function
